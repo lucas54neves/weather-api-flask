@@ -42,6 +42,7 @@ class Weather(Resource):
             for data in dataByDate:
                 dataToSave = {
                     'city': city,
+                    'cityId': cityId,
                     'state': state,
                     'country': country,
                     'date': data['date'],
@@ -53,7 +54,6 @@ class Weather(Resource):
 
 
                 weatherData = weatherSchema.load(dataToSave)
-                print(f'## Weather {weatherData}')
 
                 weatherData.saveToDb()
 

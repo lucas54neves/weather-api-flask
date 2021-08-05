@@ -5,6 +5,7 @@ class WeatherModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     city = db.Column(db.String(80), nullable=False)
+    cityId = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String(80), nullable=False)
     state = db.Column(db.String(80), nullable=False)
     country = db.Column(db.String(80), nullable=False)
@@ -17,8 +18,9 @@ class WeatherModel(db.Model):
         db.UniqueConstraint('city', 'date', name='cityDate'),
     )
 
-    def __init__(self, city, date, state, country, rainProbability, rainPrecipitation, minTemperature, maxTemperature):
+    def __init__(self, city, cityId, date, state, country, rainProbability, rainPrecipitation, minTemperature, maxTemperature):
         self.city = city
+        self.cityId = cityId
         self.date = date
         self.state = state
         self.country = country
@@ -28,11 +30,12 @@ class WeatherModel(db.Model):
         self.maxTemperature = maxTemperature
 
     def __repr__(self, ):
-        return f'WeatherModel(city={self.city}, state={self.state}, country={self.country}, date={self.date})'
+        return f'WeatherModel(city={self.city}, cityId={self.cityId} state={self.state}, country={self.country}, date={self.date})'
 
     def json(self, ):
         return {
             'city': self.city,
+            'cityId': self.cityId,
             'date': self.date,
             'state': self.state,
             'country': self.country,
@@ -45,11 +48,11 @@ class WeatherModel(db.Model):
     @classmethod
     def findById(cls, id):
         print(id)
-        return cls.query.filter_by(id=id).first()
+        return cls.query.filter_by(cityId=id)
     
     @classmethod
     def findByCity(cls, city):
-        return cls.query.filter_by(city=city).first()
+        return cls.query.filter_by(city=city)
     
     @classmethod
     def findAll(cls):
