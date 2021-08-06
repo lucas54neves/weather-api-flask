@@ -34,6 +34,10 @@ Busca as informações climáticas da cidade a partir de seu ID na API do Clima 
 
 Realiza uma análise nos dados coletados. Informa em formato JSON a cidade com maior temperatura (**cityWithHigherTemperature**) e a média de precipitação por cidade (**precipitationAverage**).
 
+Formato de data esperado:
+- **data_inicial:** 2021-08-01
+- **data_final:** 2021-08-20
+
 **Method:** GET
 
 #### /cidades <a name="/cidades" />
